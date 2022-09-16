@@ -1,0 +1,4 @@
+board_schema.sql 파일을 mysql에서 돌려주고 index.html 파일을 실행
+
+dirver : com.mysql.cj.jdbc.Driver
+url : jdbc:mysql://127.0.0.1:3306/ssafyweb?serverTimezone=UTC
