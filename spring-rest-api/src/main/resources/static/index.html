@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>데이터를 비동기로 서버에 보냈다가 다시 돌려받기</h3>
+	<button onclick="test();">버튼</button>
+</body>
+</html>
+<script>
+	function test() {
+		let dto = {
+			"name": "홍길동",
+			"age": 24
+		};
+		
+		let path = "/post";
+		
+		fetch(`${path}`, {
+			method: "POST",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(dto)
+		})
+		.then((response) => response.json())
+		.then((data) => console.log(data.name + " " + data.age));
+	}
+</script>

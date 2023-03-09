@@ -1,0 +1,9 @@
+게시글은 동기로 처리.
+댓글은 비동기로 처리. (REST API)
+
+DB는 mysql 사용
+root-context.xml 에서 DB 설정 적절하게 변경하기
+
+명명 규칙
+java : 카멜
+db : 언더바(_)
