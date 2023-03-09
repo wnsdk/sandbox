@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wnsdk.spring.model.mapper.BoardMapper">
+
+	<resultMap type="boardDto" id="article">
+		<result column="article_no" property="articleNo"/>
+		<result column="user_id" property="userId"/>
+		<result column="subject" property="subject"/>
+		<result column="register_time" property="registerTime"/>
+	</resultMap>
+	
+	<resultMap type="boardDto" id="articleAll" extends="article">
+		<result column="user_pwd" property="userPwd"></result>
+		<result column="content" property="content"></result>
+	</resultMap>
+	
+	<resultMap type="commentDto" id="comment">
+		<result column="comment_no" property="commentNo"/>
+		<result column="user_id" property="userId"/>
+		<result column="comment" property="comment"/>
+		<result column="comment_time" property="commentTime"/>
+	</resultMap>
+	
+	<select id="boardList" resultMap="article">
+		select article_no, user_id, subject, register_time
+		from board
+		order by register_time
+	</select>
+	
+	<select id="boardDetail" parameterType="int" resultMap="articleAll">
+		select article_no, user_id, user_pwd, subject, content, register_time
+		from board
+		where article_no = #{articeNo}
+	</select>
+	
+	<insert id="boardWrite" parameterType="boardDto">
+		insert into board (user_id, user_pwd, subject, content, register_time)
+		values (#{userId}, #{userPwd}, #{subject}, #{content}, now())
+	</insert>
+	
+	<select id="commentList" resultMap="comment">
+		select comment_no, user_id, comment, comment_time
+		from comment
+		order by comment_time
+	</select>
+</mapper>
