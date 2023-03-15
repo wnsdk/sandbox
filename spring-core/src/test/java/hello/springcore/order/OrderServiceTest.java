@@ -1,19 +1,28 @@
 package hello.springcore.order;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import hello.springcore.AppConfig;
 import hello.springcore.member.Grade;
 import hello.springcore.member.Member;
 import hello.springcore.member.MemberService;
-import hello.springcore.member.MemberServiceImpl;
 
 class OrderServiceTest {
 
-	MemberService memberService = new MemberServiceImpl();
-	OrderService orderService = new OrderServiceImpl();
+	// MemberService memberService = new MemberServiceImpl();
+	// OrderService orderService = new OrderServiceImpl();
+	MemberService memberService;
+	OrderService orderService;
+
+	@BeforeEach
+	public void beforeEach() {
+		AppConfig appConfig = new AppConfig();
+		memberService = appConfig.memberService();
+		orderService = appConfig.orderService();
+	}
 
 	@Test
 	void createOrder() {
@@ -22,7 +31,7 @@ class OrderServiceTest {
 		memberService.join(member);
 
 		Order order = orderService.createOrder(memberId, "itemA", 10000);
-		Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
+		assertThat(order.getDiscountPrice()).isEqualTo(1000);
 	}
 
 }
