@@ -4,7 +4,7 @@ var web3;
  */
 const SEPOLIA_URL =
   "https://sepolia.infura.io/v3/ccbf710f49e54b2c867e185af221ffa9";
-const CA = "0x7aE022cCea6910B3F755FC64F6d6521B6efF327F";
+const CA = "0x8442d3ef77b8fEEE80A422C951c0BDEb600bb748";
 const STORAGE_ABI = [
   {
     inputs: [],
@@ -34,7 +34,7 @@ const STORAGE_ABI = [
   },
 ];
 const privateKey =
-  "b7e377ebc8b72d357580dd6b54f43c37649bf3c9d780d461494b323f4dd0b0dd";
+  "ffbc1bbea55339647d97f5f7758a8909a3fd5a8f9adaa621c2ca239ba0e69501";
 var sender;
 var senderAddress;
 var storageContract;
