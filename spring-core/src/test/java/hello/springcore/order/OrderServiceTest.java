@@ -34,4 +34,11 @@ class OrderServiceTest {
 		assertThat(order.getDiscountPrice()).isEqualTo(1000);
 	}
 
+	// 의존관계 주입 - 필드 주입의 문제점 -> 쓰지 말기!
+//	@Test
+//	void fieldInjectionTest() {
+//		OrderServiceImpl orderService = new OrderServiceImpl();	// new로 생성하면 필드 주입 안 됨. setter 따로 만들어 줘야 됨
+//		orderService.createOrder(1L, "itemA", 10000);
+//	}
+
 }
