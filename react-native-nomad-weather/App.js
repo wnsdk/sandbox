@@ -9,9 +9,20 @@ import {
   View,
 } from "react-native";
 import * as Location from "expo-location";
+import { Fontisto } from "@expo/vector-icons";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const API_KEY = "784ab24ff2ed5d94d4288abed9e25d13";
+
+const icons = {
+  Clouds: "cloudy",
+  Clear: "day-sunny",
+  Atmosphere: "cloudy-gusts",
+  Drizzle: "rain",
+  Rain: "rains",
+  Snow: "snow",
+  Thunderstorm: "lightning",
+};
 
 console.log(SCREEN_WIDTH);
 
@@ -55,7 +66,7 @@ export default function App() {
         contentContainerStyle={styles.weather}
       >
         {days.length === 0 ? (
-          <View style={styles.day}>
+          <View style={{ ...styles.day, alignItems: "center" }}>
             <ActivityIndicator
               color="white"
               style={{ marginTop: 10 }}
@@ -65,9 +76,24 @@ export default function App() {
         ) : (
           days.map((day, index) => (
             <View key={index} style={styles.day}>
-              <Text style={styles.temp}>
-                {parseFloat(day.temp.day).toFixed(1)}
-              </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
+                }}
+              >
+                <Text style={styles.temp}>
+                  {parseFloat(day.temp.day).toFixed(1)}
+                </Text>
+                <Fontisto
+                  name={icons[day.weather[0].main]}
+                  size={58}
+                  color="white"
+                />
+              </View>
+
               <Text style={styles.description}>{day.weather[0].main}</Text>
               <Text style={styles.tinyText}>{day.weather[0].description}</Text>
             </View>
@@ -89,23 +115,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cityName: {
+    color: "white",
     fontSize: 48,
     fontWeight: "500",
   },
   weather: {},
   day: {
     width: SCREEN_WIDTH,
-    alignItems: "center",
+    alignItems: "left",
+    padding: 10,
   },
   temp: {
+    color: "white",
     marginTop: 50,
-    fontSize: 128,
+    fontSize: 98,
   },
   description: {
+    color: "white",
     marginTop: -10,
-    fontSize: 50,
+    fontSize: 40,
   },
   tinyText: {
+    color: "white",
     fontSize: 20,
   },
 });
